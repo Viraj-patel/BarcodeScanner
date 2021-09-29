@@ -31,64 +31,44 @@ function downloadBlob(blob, filename) {
       return inputRef
   }
 
-function Barcode()
- 
+const Barcode = () =>
 {
-    const [barcod,setBarcod] = useState({
-      productName:'',
-      productNumber:''
-    });
     const svgRef=useRef({});
-    const [getbarcode,setGetbarcode] = useState([]);
-   
-    const { productName, productNumber} = barcod; // Array Destructutring
- 
-   
-    const dummyBEData = [
-        {
-            name:'cards',
-            barcode:'1234cards',
 
-        },
-        {
-            name:'apple',
-            barcode:'1234apple',
+    const[data,setData]=useState([
+      {
+          name:'cards',
+          barcode:'1234cards',
 
-        },
-        {
-            name:'sam',
-            barcode:'1234sam',
+      },
+      {
+          name:'apple',
+          barcode:'1234apple',
 
-        },
-        {
-            name:'hii',
-            barcode:'1234hii',
+      },
+      {
+          name:'sam',
+          barcode:'1234sam',
 
-        },
-        
+      },
+      {
+          name:'hii',
+          barcode:'1234hii',
+
+      },
+      
 
 
-    ]
-   // Handling Input values here 
- 
-
+  ]);
   
    // Code for fetching Barcode Number from database  on window load
-    // const  loadBrcode =()=>
-    // {
-    //   var response = fetch('http://localhost/react_projects/react_barcod/load_barcode.php')
-    //   .then(function(response){
-    //        return response.json();
-    //     })
-    //   .then(function(myJson) 
-    //     {
-    //     setGetbarcode(myJson);
-    //     });
-    // }
- 
-    // useEffect(() => {
-    //   loadBrcode();
-    // }, []);
+    
+    useEffect(() => {
+      let res=fetch('https://non-sense-backend.herokuapp.com/getProduct')
+      .then(response => response.json()).then(data =>data)
+      setData(res)
+      // .then(res => );
+    });
  
    
      
@@ -119,15 +99,15 @@ function Barcode()
         </thead>
         <tbody id="output">
 
-            {dummyBEData.map((m,i)=>{
-                return <tr>
+            {data.map((m,i)=>{
+                return (<tr>
                 <td>{i}</td>
                 <td><h5>{m.name}</h5></td>
                 <td ref={(ref,key)=>{
                     svgRef.current[m.name]=ref
                 }}><svg ref={GetBarCode(m.barcode) }/></td>
                 <td><button type="submit" className="btn btn-primary" onClick={()=>{downloadSVG(m.name)}}name="submit">Download</button></td>
-              </tr>   
+              </tr>)   
             })
 
             }

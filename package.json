@@ -1,5 +1,5 @@
 {
-  "name": "barcodescanner",
+  "name": "BarcodeScanner",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
+    "quagga": "^0.12.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.1",

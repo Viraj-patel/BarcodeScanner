@@ -3,36 +3,30 @@ import React, {useState}from "react";
 import { Redirect } from 'react-router';
 
 export default function AddProduct() {
-    let [barcode,setBarcods]=useState(); 
+    const [productName,setProductName]=useState(""); 
     let [redirect,setRedirect]=useState(false)
-
     const onInputChange = e => {
-        setBarcods(e.target.value)
+      console.log(e.target.value);
+      setProductName(e.target.value)
     };
 
 
-    const submitResult = (e) =>
+   const submitResult = async() =>
     {
-        // var proName = barcod.productName;
-        // var proNum = barcod.productNum;
-        var proNum = barcode;
-        console.log(proNum);
-        document.getElementById("barcodeName").value = "";
+        const name = productName;
+        const barcode =Math.floor(100000 + Math.random() * 900000).toString();
+        console.log(name,barcode);
+        // document.getElementById("barcodeName").value = "";
         setRedirect(true)
-        // let sendReqData = barcod;
-        // var response = fetch('http://localhost/react_projects/react_barcod/generate_barcode.php',{
-        //   method:"POST",
-        //   headers: {
-        //    "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ barCodeProductName:proName, barCodeProNum:proNum }), // This will send to php 
-        //   }).then(function(response){
-        //    return response.json();
-        //   })
-        //   .then(function(myJson) 
-        //   {
-        //     loadBrcode();
-        //   });
+        await fetch('https://non-sense-backend.herokuapp.com/addProduct',{
+          method:"POST",
+          headers: {
+           "Content-Type": "application/json",
+          },
+          body:JSON.stringify({ name,barcode}), 
+          }).then((res)=>{
+            console.log(res,"ggg");
+          })
     }  
     
    
@@ -50,7 +44,7 @@ export default function AddProduct() {
             id="barcodeName"
             type="text"
             className="form-control  mb-4"
-            value={barcode}
+            value={productName}
             name="productName"
             onChange={(e) => onInputChange(e)}
             placeholder="Enter Product Name"
