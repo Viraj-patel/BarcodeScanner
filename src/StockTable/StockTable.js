@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useEffect, useParams, useRef } from "react";
-import { useBarcode } from "@createnextapp/react-barcode";
+import React, { useState, useEffect, useRef } from "react";
+var Barcode = require("react-barcode");
 
 function downloadBlob(blob, filename) {
   const objectUrl = URL.createObjectURL(blob);
@@ -15,45 +15,14 @@ function downloadBlob(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
 }
 
-const GetBarCode = (value) => {
-  const { inputRef } = useBarcode({
-    value, //Product Number from database
-    options: {
-      background: "#ffffff",
-      fontSize: 20,
-      margin: 30,
-      fontOptions: "bold",
-      width: 1,
-      height: 70,
-    },
-  });
-  return inputRef;
-};
-
-const Barcode = () => {
-  // useEffect(() => {
-  //   loadBrcode();
-  // }, []);
+const StockTable = () => {
   const svgRef = useRef({});
 
-  const [data, setData] = useState([
-    {
-      name: "cards",
-      barcode: "1234cards",
-    },
-    {
-      name: "apple",
-      barcode: "1234apple",
-    },
-    {
-      name: "sam",
-      barcode: "1234sam",
-    },
-    {
-      name: "hii",
-      barcode: "345678",
-    },
-  ]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    loadBrcode();
+  }, []);
 
   const loadBrcode = () => {
     var response = fetch("https://non-sense-backend.herokuapp.com/getProduct")
@@ -63,36 +32,6 @@ const Barcode = () => {
       .then(function (myJson) {
         setData(myJson);
       });
-  };
-
-  const getTableRow = (m) => {
-    return (
-      <tr>
-        <td>1</td>
-        <td>
-          <h5>{m.name}</h5>
-        </td>
-        <td
-          ref={(ref, key) => {
-            svgRef.current[m.name] = ref;
-          }}
-        >
-          <svg ref={GetBarCode(m.barcode)} />
-        </td>
-        <td>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={() => {
-              downloadSVG(m.name);
-            }}
-            name="submit"
-          >
-            Download
-          </button>
-        </td>
-      </tr>
-    );
   };
 
   // Code for Inserting barcode into database
@@ -122,7 +61,33 @@ const Barcode = () => {
             </thead>
             <tbody id="output">
               {data.map((m, i) => {
-                return getTableRow(m);
+                return (
+                  <tr>
+                    <td>i</td>
+                    <td>
+                      <h5>{m.name}</h5>
+                    </td>
+                    <td
+                      ref={(ref, key) => {
+                        svgRef.current[m.name] = ref;
+                      }}
+                    >
+                      <Barcode value={m.barcode} />
+                    </td>
+                    <td>
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={() => {
+                          downloadSVG(m.name);
+                        }}
+                        name="submit"
+                      >
+                        Download
+                      </button>
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>
@@ -132,4 +97,4 @@ const Barcode = () => {
   );
 };
 
-export default Barcode;
+export default StockTable;
