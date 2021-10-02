@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
 import logo from "../nonsenselogo.jpg";
+import uparrow from "../uparrow.png";
 import { Redirect } from "react-router";
+import AddProduct from "../AddProducts/AddProduct";
 
 const Dashboard = () => {
   const [redirect, setRedirect] = useState(false);
+  const [showAddProduct, setShowAddProduct] = useState(false);
   const [redirectTo, setRedirectTo] = useState("");
   return redirect ? (
     <Redirect to={{ pathname: `/${redirectTo}` }} />
@@ -16,13 +19,19 @@ const Dashboard = () => {
         <button
           className="buttonClass"
           onClick={() => {
-            setRedirect(true);
-            setRedirectTo("addProduct");
+            setShowAddProduct(!showAddProduct);
           }}
         >
           Add new Product
+          {showAddProduct && (
+            <span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src={uparrow} height="20px" width="20px" />
+            </span>
+          )}
         </button>
       </div>
+      {showAddProduct && <AddProduct />}
       <div>
         <button
           className="buttonClass"

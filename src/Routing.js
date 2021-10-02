@@ -11,7 +11,6 @@ export default function Routing() {
       <BrowserRouter>
         <switch>
           <Route path="/" exact component={Dashboard} />
-          <Route path="/addProduct" component={AddProduct} />
           <Route path="/list" component={StockTable} />
           <Route path="/scanner" component={BarcodeReaders} />
         </switch>

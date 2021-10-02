@@ -1,0 +1,19 @@
+.inputcontainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
+.inputBox {
+    border-radius: 30px;
+    padding: 0 10px;
+    width: 200px;
+}
+
+.buttonClassProduct  {
+    padding: 4px 10px;
+    background-color: cyan;
+    border: 0px;
+    border-radius: 10px;
+    width: 80px
+}
