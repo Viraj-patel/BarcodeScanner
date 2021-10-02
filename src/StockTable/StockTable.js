@@ -56,14 +56,14 @@ const StockTable = () => {
                 <th>Id</th>
                 <th>Product Name</th>
                 <th>Barcode Number</th>
-                <th>Download</th>
+                <th>Quantity</th>
               </tr>
             </thead>
             <tbody id="output">
               {data.map((m, i) => {
                 return (
                   <tr>
-                    <td>i</td>
+                    <td>{i}</td>
                     <td>
                       <h5>{m.name}</h5>
                     </td>
@@ -71,21 +71,13 @@ const StockTable = () => {
                       ref={(ref, key) => {
                         svgRef.current[m.name] = ref;
                       }}
+                      onClick={() => {
+                        downloadSVG(m.name);
+                      }}
                     >
                       <Barcode value={m.barcode} />
                     </td>
-                    <td>
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={() => {
-                          downloadSVG(m.name);
-                        }}
-                        name="submit"
-                      >
-                        Download
-                      </button>
-                    </td>
+                    <td>{m.quantity}</td>
                   </tr>
                 );
               })}

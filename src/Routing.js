@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import Dashboard from "./Dashboard/Dashboard";
 import StockTable from "./StockTable/StockTable";
 import AddProduct from "./AddProducts/AddProduct";
 import BarcodeReaders from "./BarcodeReader/BarcodeReaders";
@@ -9,7 +10,8 @@ export default function Routing() {
     <div>
       <BrowserRouter>
         <switch>
-          <Route path="/" exact component={AddProduct} />
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/addProduct" component={AddProduct} />
           <Route path="/list" component={StockTable} />
           <Route path="/scanner" component={BarcodeReaders} />
         </switch>
