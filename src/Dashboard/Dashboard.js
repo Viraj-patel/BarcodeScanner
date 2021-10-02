@@ -4,10 +4,13 @@ import logo from "../nonsenselogo.jpg";
 import uparrow from "../uparrow.png";
 import { Redirect } from "react-router";
 import AddProduct from "../AddProducts/AddProduct";
+import Scanner from "../BarcodeReader//Scanner";
 
 const Dashboard = () => {
   const [redirect, setRedirect] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
+  const [openScannerOptions, setOpenScannerOptions] = useState(false);
   const [redirectTo, setRedirectTo] = useState("");
   return redirect ? (
     <Redirect to={{ pathname: `/${redirectTo}` }} />
@@ -36,24 +39,25 @@ const Dashboard = () => {
         <button
           className="buttonClass"
           onClick={() => {
-            setRedirect(true);
-            setRedirectTo("add");
+            setShowScanner(true);
+            setOpenScannerOptions(true);
           }}
+          disabled={openScannerOptions}
         >
-          Add product in Stock
+          Scan Product
         </button>
       </div>
-      <div>
-        <button
-          className="buttonClass"
-          onClick={() => {
-            setRedirect(true);
-            setRedirectTo("remove");
-          }}
-        >
-          Remove Product from stock
-        </button>
-      </div>
+      {openScannerOptions && (
+        <div>
+          {showScanner && (
+            <Scanner
+              onDetected={(res) => {
+                console.log(res);
+              }}
+            />
+          )}
+        </div>
+      )}
       <div>
         <button
           className="buttonClass"
