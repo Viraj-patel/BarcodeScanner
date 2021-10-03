@@ -10,6 +10,21 @@ class BarcodeReaders extends Component {
     redirect: false,
     redirectTo: "",
     results: [],
+    data: [],
+  };
+
+  componentDidMount() {
+    this.loadBrcode();
+  }
+
+  loadBrcode = () => {
+    var response = fetch("https://non-sense-backend.herokuapp.com/getProduct")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        this.setState({ data: myJson });
+      });
   };
 
   _scan = () => {
@@ -36,7 +51,7 @@ class BarcodeReaders extends Component {
         />
         <button onClick={this._scan}>Add new</button>
 
-        <Result result={this.state.results} />
+        <Result result={this.state.results} data={this.state.data} />
 
         {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
       </div>
