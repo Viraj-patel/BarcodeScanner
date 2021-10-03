@@ -38,11 +38,7 @@ class BarcodeReaders extends Component {
 
         <Result result={this.state.results} />
 
-        {this.state.scanning ? (
-          <div>
-            <Scanner onDetected={this._onDetected} />
-          </div>
-        ) : null}
+        {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
       </div>
     );
   }
