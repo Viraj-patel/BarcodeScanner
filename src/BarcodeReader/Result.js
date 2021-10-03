@@ -6,7 +6,8 @@ const getResultWithQuantity = (value) => {
     result[val.codeResult.code] = 0;
   });
   value.map((val) => {
-    result[val.codeResult.code] = result[val.codeResult.code]++;
+    console.log(val, result);
+    result[val.codeResult.code] = result[val.codeResult.code] + 1;
   });
   return result;
 };
