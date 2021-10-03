@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const getResultWithQuantity = (value) => {
+const getResultWithQuantity = (value, data) => {
   const result = {};
   value.map((val) => {
     result[val.codeResult.code] = 0;
@@ -9,12 +9,17 @@ const getResultWithQuantity = (value) => {
     console.log(val, result);
     result[val.codeResult.code] = result[val.codeResult.code] + 1;
   });
-  return result;
+  const dataval = {};
+  Object.keys(result).map(function (key, index) {
+    const datakey = data.find((d) => d.barcode == key);
+    dataval[datakey] = result[key];
+  });
+  return dataval;
 };
 
 class Result extends Component {
   render() {
-    const result = getResultWithQuantity(this.props.result);
+    const result = getResultWithQuantity(this.props.result, this.props.data);
 
     if (!result) {
       return null;

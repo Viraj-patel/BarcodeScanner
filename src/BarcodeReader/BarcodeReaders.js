@@ -22,7 +22,7 @@ class BarcodeReaders extends Component {
       .then(function (response) {
         return response.json();
       })
-      .then(function (myJson) {
+      .then((myJson) => {
         this.setState({ data: myJson });
       });
   };
