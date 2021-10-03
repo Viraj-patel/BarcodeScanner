@@ -8,8 +8,8 @@ class Scanner extends Component {
         inputStream: {
           type: "LiveStream",
           constraints: {
-            width: "100vw",
-            height: "100vh",
+            width: 640,
+            height: 480,
             facingMode: "environment", // or user
           },
         },
