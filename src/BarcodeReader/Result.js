@@ -3,9 +3,10 @@ import React, { Component } from "react";
 const getResultWithQuantity = (value) => {
   const result = {};
   value.map((val) => {
-    result[val.codeResult.code] = result[val.codeResult.code]
-      ? result[val.codeResult.code]++
-      : 1;
+    result[val.codeResult.code] = 0;
+  });
+  value.map((val) => {
+    result[val.codeResult.code] = result[val.codeResult.code]++;
   });
   return result;
 };
