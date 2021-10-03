@@ -19,7 +19,7 @@ class BarcodeReaders extends Component {
 
   loadBrcode = () => {
     var response = fetch("https://non-sense-backend.herokuapp.com/getProduct")
-      .then(function (response) {
+      .then((response) => {
         return response.json();
       })
       .then((myJson) => {
