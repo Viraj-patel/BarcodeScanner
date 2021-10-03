@@ -12,7 +12,7 @@ const getResultWithQuantity = (value, data) => {
   const dataval = {};
   Object.keys(result).map(function (key, index) {
     const datakey = data.find((d) => d.barcode == key);
-    dataval[datakey] = result[key];
+    dataval[datakey.barcode] = result[key];
   });
   return dataval;
 };
