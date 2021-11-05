@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Scanner from "./Scanner";
+import Result from "./Result";
 import logo from "../nonsenselogo.jpg";
 import { Redirect } from "react-router";
-
-const Result = (props) => {
-  console.log(props);
-  return <div>Result</div>;
-};
 
 class BarcodeReaders extends Component {
   state = {
