@@ -55,7 +55,7 @@ class BarcodeReaders extends Component {
         />
         <button onClick={this._scan}>Add new</button>
 
-        <Result results={this.state.results} data={this.state.data} />
+        {/* <Result results={this.state.results} data={this.state.data} /> */}
 
         {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
       </div>
