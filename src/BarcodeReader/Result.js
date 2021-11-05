@@ -24,6 +24,7 @@ class Result extends Component {
   render() {
     const result = getResultWithQuantity(this.props.results, this.props.data);
     console.log(this.props.results);
+    return <>Viraj</>;
     if (!result) {
       return null;
     }
