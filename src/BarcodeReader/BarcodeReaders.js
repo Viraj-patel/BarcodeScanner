@@ -35,7 +35,7 @@ class BarcodeReaders extends Component {
     console.log(result);
     this.setState({ scanning: !this.state.scanning });
     this.setState({
-      results: this.state.results.concat([result.codeResult.code]),
+      results: this.state.results.concat([result]),
     });
   };
 
