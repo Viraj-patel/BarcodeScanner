@@ -4,11 +4,15 @@ import logo from "../nonsenselogo.jpg";
 import uparrow from "../uparrow.png";
 import { Redirect } from "react-router";
 import AddProduct from "../AddProducts/AddProduct";
+import StockUpdater from "../StockUpdater/StockUpdater.js";
 
 const Dashboard = () => {
   const [redirect, setRedirect] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
+  const [showAddStockManually, setShowAddStockManually] = useState(false);
+  const [showRemoveStockManually, setShowRemoveStockManually] = useState(false);
   const [redirectTo, setRedirectTo] = useState("");
+
   return redirect ? (
     <Redirect to={{ pathname: `/${redirectTo}` }} />
   ) : (
@@ -47,24 +51,36 @@ const Dashboard = () => {
         <button
           className="buttonClass"
           onClick={() => {
-            setRedirect(true);
-            setRedirectTo("addmanually");
+            setShowAddStockManually(!showAddStockManually);
           }}
         >
-          Add Stock Manually
+          Add stock manually
+          {showAddStockManually && (
+            <span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src={uparrow} height="20px" width="20px" />
+            </span>
+          )}
         </button>
       </div>
+      {showAddStockManually && <StockUpdater type={"Add"} />}
       <div>
         <button
           className="buttonClass"
           onClick={() => {
-            setRedirect(true);
-            setRedirectTo("removeManually");
+            setShowRemoveStockManually(!showRemoveStockManually);
           }}
         >
-          Remove Stock Manually
+          Remove stock manually
+          {showRemoveStockManually && (
+            <span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src={uparrow} height="20px" width="20px" />
+            </span>
+          )}
         </button>
       </div>
+      {showRemoveStockManually && <StockUpdater type={"Remove"} />}
       <div>
         <button
           className="buttonClass"

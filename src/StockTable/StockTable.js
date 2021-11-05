@@ -1,5 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect, useRef } from "react";
+import "./StockTable.css";
+
 var Barcode = require("react-barcode");
 
 function downloadBlob(blob, filename) {
@@ -49,8 +51,13 @@ const StockTable = () => {
           className="col-sm-12"
           style={{ border: "1px solid rgb(206 200 200)" }}
         >
-          <h5 className="text-center  ml-4 mb-5 mt-4">Barcodes</h5>
-          <table className="table table-hover mb-5">
+          <h5
+            className="text-center  ml-4 mb-5 mt-4"
+            style={{ color: "white" }}
+          >
+            Product Details
+          </h5>
+          <table className="table mb-5" style={{ color: "white" }}>
             <thead>
               <tr>
                 <th>Id</th>
@@ -63,7 +70,7 @@ const StockTable = () => {
               {data.map((m, i) => {
                 return (
                   <tr>
-                    <td>{i}</td>
+                    <td>{i + 1}</td>
                     <td>
                       <h5>{m.name}</h5>
                     </td>

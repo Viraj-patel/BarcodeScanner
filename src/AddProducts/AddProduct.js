@@ -4,16 +4,22 @@ import "./AddProduct.css";
 
 export default function AddProduct() {
   const [productName, setProductName] = useState("");
+  const [productId, setProductId] = useState("");
+
   let [redirect, setRedirect] = useState(false);
+
   const onInputChange = (e) => {
-    console.log(e.target.value);
     setProductName(e.target.value);
+  };
+
+  const onIdChange = (e) => {
+    setProductId(e.target.value);
   };
 
   const submitResult = async () => {
     const name = productName;
-    const barcode = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log(name, barcode);
+    const barcode = productId;
+
     // document.getElementById("barcodeName").value = "";
     setRedirect(true);
     await fetch("https://non-sense-backend.herokuapp.com/addProduct", {
@@ -29,7 +35,7 @@ export default function AddProduct() {
 
   return !redirect ? (
     <div className="inputcontainer">
-      <div>
+      <div className="inputs">
         <input
           id="barcodeName"
           className="inputBox"
@@ -38,6 +44,16 @@ export default function AddProduct() {
           name="productName"
           onChange={(e) => onInputChange(e)}
           placeholder="Enter Product Name"
+          required=""
+        />
+        <input
+          id="barcode"
+          className="inputBox"
+          type="text"
+          value={productId}
+          name="productId"
+          onChange={(e) => onIdChange(e)}
+          placeholder="Enter Product Id"
           required=""
         />
       </div>
