@@ -38,6 +38,7 @@ class BarcodeReaders extends Component {
   };
 
   render() {
+    console.log(this.state.results);
     return this.state.redirect ? (
       <Redirect to={{ pathname: `../` }} />
     ) : (
