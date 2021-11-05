@@ -6,13 +6,12 @@ const getResultWithQuantity = (value, data) => {
     result[val.codeResult.code] = 0;
   });
   value.map((val) => {
-    console.log(val, result);
     result[val.codeResult.code] = result[val.codeResult.code] + 1;
   });
   const dataval = {};
   Object.keys(result).map(function (key, index) {
     const datakey = data.find((d) => d.barcode == key);
-    dataval[datakey.name] = result[key];
+    dataval[datakey?.name] = result[key];
   });
   return 0;
 };
