@@ -18,6 +18,9 @@ const getResultWithQuantity = (value, data) => {
 };
 
 class Result extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const result = getResultWithQuantity(this.props.results, this.props.data);
     console.log(this.props.results);
