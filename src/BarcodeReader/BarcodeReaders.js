@@ -3,7 +3,7 @@ import Scanner from "./Scanner";
 import Result from "./Result";
 import logo from "../nonsenselogo.jpg";
 import { Redirect } from "react-router";
-
+var _ = require("lodash");
 class BarcodeReaders extends Component {
   state = {
     scanning: false,
@@ -32,7 +32,7 @@ class BarcodeReaders extends Component {
   };
 
   _onDetected = (scanResult) => {
-    console.log(scanResult.codeResult.code);
+    console.log(_.get(scanResult, "codeResult.code", ""));
     this.setState({ scanning: !this.state.scanning });
     // this.setState({
     //   results: this.state.results.concat([result]),
