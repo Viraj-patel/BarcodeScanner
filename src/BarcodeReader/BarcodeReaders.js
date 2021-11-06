@@ -31,12 +31,12 @@ class BarcodeReaders extends Component {
     this.setState({ scanning: !this.state.scanning });
   };
 
-  _onDetected = (result) => {
-    console.log(result);
-    this.setState({ scanning: !this.state.scanning });
-    this.setState({
-      results: this.state.results.concat([result]),
-    });
+  _onDetected = (scanResult) => {
+    console.log(scanResult);
+    // this.setState({ scanning: !this.state.scanning });
+    // this.setState({
+    //   results: this.state.results.concat([result]),
+    // });
   };
 
   render() {
