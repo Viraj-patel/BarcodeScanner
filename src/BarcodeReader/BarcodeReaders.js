@@ -32,6 +32,7 @@ class BarcodeReaders extends Component {
   };
 
   _onDetected = (scanResult) => {
+    console.log(scanResult, _.get(scanResult, "codeResult.code", ""));
     this.setState({ scanning: !this.state.scanning });
     this.setState({
       results: this.state.results.concat([
