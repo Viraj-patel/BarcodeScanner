@@ -32,11 +32,12 @@ class BarcodeReaders extends Component {
   };
 
   _onDetected = (scanResult) => {
-    console.log(scanResult, _.get(scanResult, "codeResult.code", ""));
     this.setState({ scanning: !this.state.scanning });
-    // this.setState({
-    //   results: this.state.results.concat([result]),
-    // });
+    this.setState({
+      results: this.state.results.concat([
+        _.get(scanResult, "codeResult.code", ""),
+      ]),
+    });
   };
 
   render() {
@@ -54,7 +55,9 @@ class BarcodeReaders extends Component {
           }}
         />
         <button onClick={this._scan}>Add new</button>
-
+        {_.map(this.state.results, (result) => {
+          return <div>{result}</div>;
+        })}
         {/* <Result results={this.state.results} data={this.state.data} /> */}
 
         {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
