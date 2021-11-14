@@ -75,7 +75,7 @@ const Dashboard = () => {
           {showRemoveStockManually && (
             <span>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <img src={uparrow} height="20px" width="20px" />
+              <img src={uparrow} height="20px" width="20px" style={{marginLeft:"-25px"}}/>
             </span>
           )}
         </button>

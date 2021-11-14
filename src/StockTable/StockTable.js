@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect, useRef } from "react";
 import "./StockTable.css";
+import { Redirect } from "react-router";
+import logo from "../nonsenselogo.jpg";
 
 var Barcode = require("react-barcode");
 
@@ -19,7 +21,7 @@ function downloadBlob(blob, filename) {
 
 const StockTable = () => {
   const svgRef = useRef({});
-
+  const [redirect,setRedirect]= useState(false)
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -44,8 +46,19 @@ const StockTable = () => {
     downloadBlob(blob, `${i}.svg`);
   };
 
-  return (
-    <div className="container">
+  return redirect ? (
+    <Redirect to={{ pathname: `../` }} />
+  ) : (
+    <div className="main"> 
+    <div className="containers">
+      <img
+          src={logo}
+          height="30px"
+          alt="Nonsense"
+          onClick={() => {
+            setRedirect({ redirect: true });
+          }}
+        />
       <div className="row">
         <div
           className="col-sm-12"
@@ -92,6 +105,7 @@ const StockTable = () => {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };
