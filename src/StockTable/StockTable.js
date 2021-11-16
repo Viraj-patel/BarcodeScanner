@@ -21,7 +21,7 @@ function downloadBlob(blob, filename) {
 
 const StockTable = () => {
   const svgRef = useRef({});
-  const [redirect,setRedirect]= useState(false)
+  const [redirect, setRedirect] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -49,16 +49,15 @@ const StockTable = () => {
   return redirect ? (
     <Redirect to={{ pathname: `../` }} />
   ) : (
-    <div className="main"> 
     <div className="containers">
       <img
-          src={logo}
-          height="30px"
-          alt="Nonsense"
-          onClick={() => {
-            setRedirect({ redirect: true });
-          }}
-        />
+        src={logo}
+        height="30px"
+        alt="Nonsense"
+        onClick={() => {
+          setRedirect({ redirect: true });
+        }}
+      />
       <div className="row">
         <div
           className="col-sm-12"
@@ -105,7 +104,6 @@ const StockTable = () => {
           </table>
         </div>
       </div>
-    </div>
     </div>
   );
 };
